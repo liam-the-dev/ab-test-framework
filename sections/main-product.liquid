@@ -89,7 +89,11 @@
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when '@app' -%}
-                {% render block %}
+                <div class="product-app--wrapper ab__test-hide test-element" data-test-name="new-product-detail">
+                </div>
+                <div class="product-app--wrapper ab__test test-element" data-test-name="new-product-detail">
+                  {% render block %}
+                </div>
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
