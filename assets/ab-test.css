@@ -1,0 +1,9 @@
+.product-app--wrapper {
+    display: none;
+}
+.product-app--wrapper.ab__test-hide  {
+    display: block;
+}
+.product-app--wrapper[data-test-name="new-product-detail"].ab__test--active-test {
+    display: block;
+}
