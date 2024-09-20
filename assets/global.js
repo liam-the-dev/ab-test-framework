@@ -1060,7 +1060,7 @@ class VariantSelects extends HTMLElement {
     this.addEventListener('change', (event) => {
       const target = this.getInputForEventTarget(event.target);
       this.updateSelectionMetadata(event);
-
+      console.log(this.selectedOptionValues, 'this.selectedOptionValues');
       publish(PUB_SUB_EVENTS.optionValueSelectionChange, {
         data: {
           event,
@@ -1068,6 +1068,14 @@ class VariantSelects extends HTMLElement {
           selectedOptionValues: this.selectedOptionValues,
         },
       });
+      setTimeout(() => {
+        let price = document.querySelector('.product__info-wrapper .price-item.price-item--sale').dataset.salePrice;
+        let salePrice = (price/100).toFixed(2);
+        let discountPrice = (price * 0.9/100).toFixed(2);
+        document.querySelector('.bs-devshop--one-time-price h2').textContent = "$"+salePrice;
+        document.querySelector('.bs-devshop--discount-price h2').textContent = "$"+discountPrice;
+      }, 1000);
+      
     });
   }
 

@@ -83,6 +83,7 @@
       name="{{ input_name }}"
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
+      data-value-text="{{ value }}"
       {% if value.selected %}
         checked
       {% endif %}

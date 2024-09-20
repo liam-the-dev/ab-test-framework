@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
     selectedRadio.setAttribute("checked", "checked");
     selectedRadio.checked = true;
     selectedRadio.closest(`.${boxClass}`).classList.add(activeClass);
+    document.querySelector('.bs-devshop--graidet-text').classList.add('visibility-hidden');  
+    if (selectedRadio.closest(`.${boxClass}`).classList.contains('bs-devshop--most-popular')) {
+      document.querySelector('.bs-devshop--graidet-text').classList.remove('visibility-hidden');
+    }
   }
 
   const bundleRadios = document.querySelectorAll('input[name="bundlePkg"]');
@@ -51,9 +55,16 @@ document.addEventListener("DOMContentLoaded", function () {
           this,
           "bs-devshop--active-bundle-box",
           "bs-devshop--bundle-box"
-        );
+        );        
         selectedVariantId = this.getAttribute("data-variant-id");
         selectedSellingPlan = this.getAttribute("data-selling-plan");
+        let text = this.getAttribute("data-variant-text");
+        let element = document.querySelector(`[data-value-text="${text}"]`);
+        if (element) {
+            element.click();
+        } else {
+            console.error('Element not found');
+        }
       }
     });
   });
@@ -73,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedProductType = this.getAttribute("data-product-type");
         if (selectedProductType === "one-time") {
           selectedSellingPlan = null;
+          document.querySelector('.rc-widget #rc-radio1').click();
         } else {
           const activeBundle = document.querySelector(
             'input[name="bundlePkg"]:checked'
@@ -80,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
           selectedSellingPlan = activeBundle
             ? activeBundle.getAttribute("data-selling-plan")
             : null;
+          document.querySelector('.rc-widget #rc-radio2').click();
         }
       }
     });
